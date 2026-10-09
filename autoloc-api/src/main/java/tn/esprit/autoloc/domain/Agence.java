@@ -1,12 +1,6 @@
 package tn.esprit.autoloc.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,9 +33,9 @@ public class Agence {
     @Column(nullable = false, length = 20)
     private String telephone;
 
-    @OneToMany(mappedBy = "agence", cascade = jakarta.persistence.CascadeType.ALL)
+    @OneToMany(mappedBy = "agence", cascade =CascadeType.ALL)
     private List<Employe> employes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "agence", cascade = jakarta.persistence.CascadeType.ALL)
+    @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL)
     private List<Vehicule> vehicules = new ArrayList<>();
 }

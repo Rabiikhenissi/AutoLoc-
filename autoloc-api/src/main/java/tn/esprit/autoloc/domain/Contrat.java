@@ -29,9 +29,9 @@ public class Contrat {
 
     @Column(nullable = false)
     private Boolean valide;
-    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private java.util.List<Paiement> paiements = new java.util.ArrayList<>();
 
-    @OneToOne(mappedBy = "contrat")
+    @OneToOne
     private Reservation reservation;
 }

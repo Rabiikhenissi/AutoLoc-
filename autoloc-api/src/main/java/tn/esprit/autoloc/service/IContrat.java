@@ -7,7 +7,7 @@ import java.util.List;
 public interface IContrat {
     Contrat getContratById(Long id);
     Contrat addContrat(Contrat contrat);
-    Contrat updateContrat(Contrat contrat);
-    void deleteContrat(Long id);
+    Contrat updateContrat(Long id, Contrat contrat);
+    void deleteById(Long id);
     List<Contrat> getAllContrats();
 }

@@ -1,4 +1,4 @@
-package tn.esprit.autoloc.controller;
+package tn.esprit.autoloc.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import tn.esprit.autoloc.service.IPaiement;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/paiements")
+@RequestMapping("/paiements")
 @RequiredArgsConstructor
 public class PaiementController {
 

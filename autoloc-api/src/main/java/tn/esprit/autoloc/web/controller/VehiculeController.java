@@ -63,4 +63,31 @@ public class VehiculeController {
         vehiculeService.deleteVehicule(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{idVehicule}/affecter/{idAgence}")
+    public ResponseEntity<Vehicule> affecterVehicule(@PathVariable Long idVehicule,
+                                                     @PathVariable Long idAgence) {
+        Vehicule v = vehiculeService.affecterVehicule(idVehicule, idAgence);
+        return v == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(v);
+    }
+    @PutMapping("/{idVehicule}/equipements/{idEquipement}")
+    public ResponseEntity<Vehicule> affecterEquipement(@PathVariable Long idVehicule,
+                                                       @PathVariable Long idEquipement) {
+        try {
+            Vehicule v = vehiculeService.affecterEquipement(idVehicule, idEquipement);
+            return v == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(v);
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();   // 409
+        }
+    }
+
+    @DeleteMapping("/{idVehicule}/equipements/{idEquipement}")
+    public ResponseEntity<Vehicule> desaffecterEquipement(@PathVariable Long idVehicule,
+                                                          @PathVariable Long idEquipement) {
+        try {
+            Vehicule v = vehiculeService.desaffecterEquipement(idVehicule, idEquipement);
+            return v == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(v);
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();   // 409
+        }
+    }   
 }

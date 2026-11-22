@@ -62,4 +62,20 @@ public class EmployeController {
         employeService.deleteEmploye(id);
         return ResponseEntity.noContent().build();
     }
+    @PutMapping("/{idEmploye}/desaffecter")
+    public ResponseEntity<Employe> desaffecter(@PathVariable Long idEmploye) {
+        Employe e = employeService.desaffecterEmploye(idEmploye);
+        return e == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(e);
+    }
+
+    @PutMapping("/{idEmploye}/affecter/{idAgence}")
+    public ResponseEntity<Employe> affecter(@PathVariable Long idEmploye,
+                                            @PathVariable Long idAgence) {
+        try {
+            Employe e = employeService.affecterEmploye(idEmploye, idAgence);
+            return e == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(e);
+        } catch (IllegalStateException ex) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();   // 409
+        }
+    }
 }
